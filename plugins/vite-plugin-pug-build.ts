@@ -1,5 +1,5 @@
 import fs from "fs";
-import { Plugin } from "vite";
+import type { Plugin } from "vite";
 import { compileFile } from "pug";
 
 export const vitePluginPugBuild = (): Plugin => {
