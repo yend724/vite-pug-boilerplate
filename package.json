@@ -1,0 +1,17 @@
+{
+  "name": "vite-pug-boilerplate",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build --emptyOutDir",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "@types/pug": "^2.0.6",
+    "pug": "^3.0.2",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.0"
+  }
+}
