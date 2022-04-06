@@ -1,6 +1,6 @@
 # vite-pug-boilerplate
 
-This is boilerplate for using [Pug](https://pugjs.org/api/getting-started.html) in [Vite](https://vitejs.dev/) project.
+This is a boilerplate for using [Pug](https://pugjs.org/api/getting-started.html) in [Vite](https://vitejs.dev/) project.
 
 ## Install
 
