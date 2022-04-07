@@ -8,12 +8,12 @@ export const vitePluginPugBuild = (): Plugin => {
     name: "vite-plugin-pug-build",
     enforce: "pre",
     apply: "build",
-    resolveId(id: string) {
-      if (id.endsWith(".pug")) {
+    resolveId(source: string) {
+      if (source.endsWith(".pug")) {
         const dummy = `${
-          id.slice(0, Math.max(0, id.lastIndexOf("."))) || id
+          source.slice(0, Math.max(0, source.lastIndexOf("."))) || source
         }.html`;
-        pathMap[dummy] = id;
+        pathMap[dummy] = source;
         return dummy;
       }
     },
