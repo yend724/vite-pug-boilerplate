@@ -32,16 +32,17 @@ export const vitePluginPugServe = (): Plugin => {
           if (fs.existsSync(fullReqPath)) {
             return next();
           }
+
           const pugPath = `${
             fullReqPath.slice(0, Math.max(0, fullReqPath.lastIndexOf("."))) ||
             fullReqPath
           }.pug`;
-          const html = await transformPugToHtml(server, pugPath);
-          try {
-            send(req, res, html, "html", {});
-          } catch (e) {
-            console.error(e);
+          if(!fs.existsSync(pugPath)){
+            return send(req, res, "404 Not Found", "html", {});
           }
+
+          const html = await transformPugToHtml(server, pugPath);
+          return send(req, res, html, "html", {});
         } else {
           return next();
         }
