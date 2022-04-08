@@ -30,5 +30,5 @@ $ yarn build
 Locally preview production build.
 
 ```shell
-$ yarn serve
+$ yarn preview
 ```
