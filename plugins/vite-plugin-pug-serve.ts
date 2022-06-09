@@ -4,8 +4,13 @@ import type { ViteDevServer, Plugin } from "vite";
 import { compileFile } from "pug";
 
 const transformPugToHtml = (server: ViteDevServer, path: string) => {
-  const compliled = compileFile(path)();
-  return server.transformIndexHtml(path, compliled);
+  try {
+    const compliled = compileFile(path)();
+    return server.transformIndexHtml(path, compliled);
+  } catch (error) {
+    console.log(error);
+    return server.transformIndexHtml(path, "Pug Compile Error");
+  }
 };
 
 export const vitePluginPugServe = (): Plugin => {
@@ -24,8 +29,8 @@ export const vitePluginPugServe = (): Plugin => {
         const root = server.config.root;
         let fullReqPath = root + req.url;
 
-        if(fullReqPath.endsWith("/")){
-          fullReqPath += "index.html"
+        if (fullReqPath.endsWith("/")) {
+          fullReqPath += "index.html";
         }
 
         if (fullReqPath.endsWith(".html")) {
@@ -37,7 +42,7 @@ export const vitePluginPugServe = (): Plugin => {
             fullReqPath.slice(0, Math.max(0, fullReqPath.lastIndexOf("."))) ||
             fullReqPath
           }.pug`;
-          if(!fs.existsSync(pugPath)){
+          if (!fs.existsSync(pugPath)) {
             return send(req, res, "404 Not Found", "html", {});
           }
 
