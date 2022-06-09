@@ -5,8 +5,8 @@ import { compileFile } from "pug";
 
 const transformPugToHtml = (server: ViteDevServer, path: string) => {
   try {
-    const compliled = compileFile(path)();
-    return server.transformIndexHtml(path, compliled);
+    const compiled = compileFile(path)();
+    return server.transformIndexHtml(path, compiled);
   } catch (error) {
     console.log(error);
     return server.transformIndexHtml(path, "Pug Compile Error");
